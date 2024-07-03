@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primera Consulta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button onclick="window.history.back()" class="back">Volver</button>
+            <h1>Primera Consulta</h1>
+            <button onclick="window.location.href='index.html'" class="home">Inicio</button>
+        </header>
+        <main id="consultant-details">
+            <!-- Detalles del consultante se cargarán aquí -->
+        </main>
+        <footer>
+            <button onclick="rejectConsultant()" class="reject">Rechazar</button>
+            <button onclick="acceptConsultant()" class="accept">Aceptar</button>
+        </footer>
+    </div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const consultantId = urlParams.get('consultant');
+
+        const consultants = [
+            {
+                name: "Pilar Barrionuevo",
+                age: 40,
+                status: "Casada",
+                address: "Cuba 1030 - C.A.B.A.",
+                occupation: "Médica",
+                income: 1700000,
+                children: 3,
+                reason: "Divorcio",
+                audio: "audio1.mp3"
+            },
+            {
+                name: "Jorge Cardozo",
+                age: 29,
+                status: "Casado",
+                address: "La Paz 125 - Lomas de Zamora",
+                occupation: "Camionero",
+                income: 960000,
+                children: 1,
+                reason: "Cese medidas de alejamiento",
+                audio: "audio2.mp3"
+            },
+            {
+                name: "Leonardo Velez",
+                age: 25,
+                status: "Soltero",
+                address: "15 de Noviembre 430 - C.A.B.A.",
+                occupation: "Paseador de perros",
+                income: 150000,
+                children: 1,
+                reason: "Violencia",
+                audio: "audio3.mp3"
+            },
+            {
+                name: "Camila Staiano",
+                age: 23,
+                status: "Soltera",
+                address: "California 4020 - C.A.B.A.",
+                occupation: "Empleada comedor escolar",
+                income: 70000,
+                children: 2,
+                reason: "Alimentos",
+                audio: "audio4.mp3"
+            }
+        ];
+
+        const consultant = consultants[consultantId - 1];
+
+        document.getElementById('consultant-details').innerHTML = `          
+            <p>Nombre y Apellido: ${consultant.name}</p>
+            <p>Edad: ${consultant.age}</p>
+            <p>Estado Civil: ${consultant.status}</p>
+            <p>Dirección: ${consultant.address}</p>
+            <p>Ocupación: ${consultant.occupation}</p>
+            <p>Ingresos Mensuales: $${consultant.income}</p>
+            <p>Hijos: ${consultant.children}</p>
+            <p>Motivo de la Consulta: ${consultant.reason}</p>
+            <audio controls>
+                <source src="audios/${consultant.audio}" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        `;
+
+        function rejectConsultant() {
+            window.location.href = `reject-reasons.html?consultant=${consultantId}`;
+        }
+
+        function acceptConsultant() {
+            window.location.href = `strategy.html?consultant=${consultantId}`;
+        }
+    </script>
+</body>
+</html>

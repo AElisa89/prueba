@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&family=Shadows+Into+Light&display=swap');
+
+body {
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    background-color: #999993;
+
+    background: url('/images/back.png') repeat-x 0 0 scroll;
+    background-color:#0C0C0C;
+    height:100%;
+    width:100%;
+}
+
+/*SOLO EL TITULO*/
+.container {    
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    border:5.4px solid #3C3B94;
+    border-radius:10.2px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    background-color: #290dc7;
+    color: white;
+    padding: 10px 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+header button.back::before {
+    content: "← ";
+}
+
+header button.home::before {
+    content: "🏠 ";
+}
+
+main {
+    text-align: center;
+    margin: 20px 0;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cards-container{
+    background-color: transparent;
+    display: flex;
+    align-items: stretch;
+    font-weight: 800;
+    font-size: larger;
+}
+
+main .card {
+    max-width: 300px;
+    max-height: 350px;
+    width: calc(50% - 10px);
+    margin: 5px;
+    background:rgb(240, 182, 57);
+    border: 1px solid #ddd;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: solid;
+}
+
+main .card.selected {
+    border-color: #6d0377;
+    border-width: 0.4rem;
+}
+
+main .card img {
+    width: 100%;
+    height: auto;
+}
+
+main .card p {
+    margin: 10px 0 0;
+}
+
+footer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+footer button {
+    background-color: #290dc7;
+    color: rgb(212, 199, 14);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+footer button.next::after {
+    content: " →";
+   
+}
+
+button.next{
+    background-color: #290dc7;
+    color: rgb(212, 199, 14);
+    font-weight:900;
+}
+
+footer button.reject {
+    background-color: #e60000;
+}
+
+footer button.accept {
+    background-color:#290dc7;;
+    
+}
+
+
+.spruce{ 
+  border:5.4px solid #3C3B94;
+  border-radius:10.2px;
+  padding:10px 50px 10px 50px;
+  margin:10;
+  background-color:#290dc7;
+  color:#cde405;
+  font-weight:900;
+  opacity:1;
+  text-decoration: none;
+}
+
+.options label{
+    font-weight:900;
+    background-color: aliceblue;
+}
+
+p{
+    font-weight:900;
+    text-align: center;
+    font-size: larger;
+}
+
+.rejected{
+    display: flex;
+    justify-content: center;
+    background-image: none;
+}
+
+
+label{
+    font-weight:900;
+}

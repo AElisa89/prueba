@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segunda Consulta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button onclick="window.history.back()" class="back">Volver</button>
+            <h1>Segunda Consulta</h1>
+            <button onclick="window.location.href='index.html'" class="home">Inicio</button>
+        </header>
+        <main id="consultant-details">
+            <!-- Detalles del consultante se cargarán aquí -->
+        </main>
+        <section>
+            <h2>Vamos a definir los próximos pasos:</h2>
+            <div>
+                <input type="checkbox" id="op1" name="steps" value="Op1">
+                <label for="op1">PRESENTARNOS EN EL EXPEDIENTE</label><br>
+                <input type="checkbox" id="op2" name="steps" value="Op2">
+                <label for="op2">SOLICITUD DE EXIMICIÓN DEL PAGO BONO DERECHO FIJO</label><br>
+                <input type="checkbox" id="op3" name="steps" value="Op3">
+                <label for="op3">EVALUAR SI SE ESTAN CUMPLIENDO LAS MEDIDAS</label><br>
+                <input type="checkbox" id="op4" name="steps" value="Op4">
+                <label for="op4">DENUNCIAR HECHOS NUEVOS EN EL EXPEDIENTE</label><br>
+                <input type="checkbox" id="op5" name="steps" value="Op5">
+                <label for="op5">PEDIR QUE SE REITEREN NOTIFCACIONES</label><br>
+                <input type="checkbox" id="op6" name="steps" value="Op6">
+                <label for="op6">PEDIR BOTON ANTIPÁNICO</label><br>
+                <input type="checkbox" id="op7" name="steps" value="Op7">
+                <label for="op7">PEDIR LA RENOVACIÓN DE MEDIDAS</label><br>
+            </div>
+        </section>
+        <footer>
+            <button onclick="finalize()" class="next">Aceptar</button>
+        </footer>
+    </div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const consultantId = urlParams.get('consultant');
+
+        const consultants = [
+            {
+                name: "Maria Lopez",
+                age: 40,
+                status: "Casada",
+                address: "dir1",
+                occupation: "Ama de casa",
+                income: 90000,
+                children: 3,
+                reason: "Alimentos"
+            },
+            {
+                name: "Jorge Perez",
+                age: 26,
+                status: "Soltero",
+                address: "dir2",
+                occupation: "Camionero",
+                income: 960000,
+                children: 0,
+                reason: "Violencia"
+            },
+            {
+                name: "Claudio Bonzo",
+                age: 39,
+                status: "Divorciado",
+                address: "dir3",
+                occupation: "Changarin",
+                income: 250000,
+                children: 2,
+                reason: "Sucesión"
+            },
+            {
+                name: "Laura Maidana",
+                age: 52,
+                status: "Separada",
+                address: "dir4",
+                occupation: "Lashista",
+                income: 700000,
+                children: 1,
+                reason: "Divorcio"
+            }
+        ];
+
+        const consultant = consultants[consultantId - 1];
+
+        document.getElementById('consultant-details').innerHTML = `
+            <img src="person${consultantId}.jpg" alt="${consultant.name}">
+            <p>Nombre y Apellido: ${consultant.name}</p>
+            <p>Edad: ${consultant.age}</p>
+        `;
+
+        function finalize() {
+            window.location.href = 'final-page.html';
+        }
+    </script>
+</body>
+</html>

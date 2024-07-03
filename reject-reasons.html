@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razones de Rechazo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button onclick="window.history.back()" class="back">Volver</button>
+            <h1>Razones de Rechazo</h1>
+            <button onclick="window.location.href='index.html'" class="home">Inicio</button>
+        </header>
+        <main>
+            <form class="rechazos">
+                <input type="checkbox" id="no-domicilio" name="reason" value="No tiene domicilio en CABA">
+                <label for="no-domicilio">NO CUMPLE REQUISITO DOMICILIO EN CABA</label><br>
+                <input type="checkbox" id="excede-ingresos" name="reason" value="Excede tope de ingresos">
+                <label for="excede-ingresos">EXCEDE TOPE DE INGRESOS</label><br>
+                <input type="checkbox" id="consulta-ajena" name="reason" value="Consulta ajena al Patrocinio">
+                <label for="consulta-ajena">MOTIVO DE CONSULTA AJENO AL PATROCINIO</label><br>
+                <input type="checkbox" id="ya-abogado" name="reason" value="Ya tiene abogado">
+                <label for="ya-abogado">YA TIENE ABOGADO</label><br>
+                <input type="checkbox" id="ya-abogado" name="reason" value="Ya tiene abogado">
+                <label for="ya-abogado">OBJECIÓN DE CONCIENCIA</label><br>
+            </form>
+        </main>
+        <DIV class="rejected">
+            <img src="/images/REJECTED.jpg" alt="">
+        </DIV>
+        <footer>
+            <button onclick="confirmRejection()" class="confirm">Confirmar Rechazo</button>
+        </footer>
+    </div>
+
+    <script>
+        function confirmRejection() {
+            window.location.href = 'waiting-room.html';
+        }
+    </script>
+</body>
+</html>

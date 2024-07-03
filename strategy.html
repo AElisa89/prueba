@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pensar Estrategias</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            text-align: center;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .options label {
+            display: block;
+            background-color: #f2f2f2;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            width: 150px;
+        }
+        .options input[type="checkbox"] {
+            display: none;
+        }
+        .options input[type="checkbox"]:checked + label {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .results p {
+            margin: 5px;
+        }
+        .results p.correct {
+            color: green;
+        }
+        .results p.incorrect {
+            color: red;
+        }
+        .next {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .next:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button onclick="window.history.back()" class="back">Volver</button>
+            <h1>Pensar Estrategias</h1>
+            <button onclick="window.location.href='index.html'" class="home">Inicio</button>
+        </header>
+        <main>
+            <div class="options" id="strategy-options">
+                <!-- Opciones de estrategias se cargarán aquí -->
+            </div>
+            <div class="results" id="strategy-results">
+                <!-- Resultados de estrategias se mostrarán aquí -->
+            </div>
+        </main>
+        <footer>
+            <button onclick="checkStrategy()" class="next">Chequear Estrategia</button>
+            <button id="next-button" class="next" style="display: none;" onclick="window.location.href='second-consultation.html'">Avanzar a segunda consulta</button>
+        </footer>
+    </div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const consultantId = urlParams.get('consultant');
+
+        const strategies = {
+            1: ['Accion1', 'Accion2', 'Accion3', 'Accion4', 'Accion5'],
+            2: ['Accion1', 'Accion2', 'Accion3', 'Accion4', 'Accion5'],
+            3: ['PEDIR REGIMEN DE ALIMENTOS', 'MEDIDAS DE PROHIBICION DE ACERCAMIENTO', 'BOTON ANTIPANICO', 'PEDIR LA RESPONSABILIDAD PARENTAL UNILATERAL', 'NOTIFICAR LAS MEDIDAS', 'ESTAR ATENTOS AL VTO DE LAS MEDIDAS'],
+            4: ['APOYO PSICOLÓGICO PARA EL NIÑO/A','RÉGIMEN DE ALIMENTOS', 'MEDIDA DE PROHIBICIÓN DE ACERCAMIENTO', 'ALIMENTOS PROVISORIOS', 'EMBARGO']
+        };
+
+        const correctStrategies = {
+            1: [true, true, true, true, true],
+            2: [true, true, true, true, true],
+            3: [false, false, true, false, true, true],
+            4: [true, true, true, true, false]
+        };
+
+        let selectedOptions = Array(strategies[consultantId].length).fill(false);
+
+        function renderOptions() {
+            const container = document.getElementById('strategy-options');
+            container.innerHTML = '';
+            strategies[consultantId].forEach((option, index) => {
+                container.innerHTML += `
+                    <div>
+                        <input type="checkbox" id="option${index}" name="strategy" value="${option}" onchange="selectOption(${index})">
+                        <label for="option${index}">${option}</label>
+                    </div>
+                `;
+            });
+        }
+
+        function selectOption(index) {
+            selectedOptions[index] = !selectedOptions[index];
+        }
+
+        function checkStrategy() {
+            const resultsContainer = document.getElementById('strategy-results');
+            resultsContainer.innerHTML = '';
+            strategies[consultantId].forEach((option, index) => {
+                const isCorrect = selectedOptions[index] === correctStrategies[consultantId][index];
+                const colorClass = isCorrect ? 'correct' : 'incorrect';
+                resultsContainer.innerHTML += `<p class="${colorClass}">${option}: ${isCorrect ? 'Correcto' : 'Incorrecto'}</p>`;
+            });
+            document.getElementById('next-button').style.display = 'block';
+        }
+
+        renderOptions();
+    </script>
+</body>
+</html>
+
+
